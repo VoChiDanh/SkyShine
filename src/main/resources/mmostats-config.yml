@@ -1,0 +1,11 @@
+debug: false
+formula:
+  CUSTOM1: "5"
+stats:
+  MAX_HEALTH: '#cf_CUSTOM1# / 20'
+  PVE_DAMAGE: '#cf_CUSTOM1# / 40'
+  PVP_DAMAGE: '#cf_CUSTOM1# / 60'
+  ATTACK_DAMAGE: '#cf_CUSTOM1# / 80'
+  CRITICAL_STRIKE_CHANCE: '#cf_CUSTOM1# / 100'
+  CRITICAL_STRIKE_POWER: '#cf_CUSTOM1# / 200'
+  ARMOR: '#cf_CUSTOM1# / 300'

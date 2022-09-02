@@ -1,0 +1,23 @@
+name: '${project.name}'
+version: '${project.version}'
+main: net.danh.SkyShine
+author: VoChiDanh
+api-version: 1.13
+depend: [MythicLib, MMOItems]
+commands:
+  skyshine:
+    usage: /skyshine
+    description: Master command for all SkyShine commands.
+    permission: skyshine.admin
+    aliases: [ssh]
+  mmostats:
+    usage: /mmostats
+    description: Master command for all mmostats commands.
+    permission: mmostats.admin
+permissions:
+  skyshine.admin:
+    description: Allows usage of all SkyShine commands.
+    default: op
+  mmostats.admin:
+    description: Allows usage of all mmostats commands.
+    default: op

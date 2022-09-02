@@ -1,0 +1,105 @@
+Options:
+  # When enabled, stores the whole config into memory for performance.
+  # Is highly recommended, but may take up some RAM if using a VERY large config.
+  # NOTE: Some features will not work as intended and may be entirely disabled if
+  # this is set to false. ONLY do this as a last resort if SkyShine is lagging!
+  cacheConfig: true
+  # List of worlds that uses SkyShine. Leave empty to use it server-wide.
+  # worldList: ["world", "world_nether", "world_the_end"]
+  worldList: []
+  # Whether converted items should keep old enchantments once converted.
+  keepEnchantments: true
+  # Whether custom names carry over from old items once converted.
+  keepCustomNames: true
+  # The item name of the random item displayed when using weights in crafting.
+  previewItemName: "&1Random Item"
+  # {itemname} will be replaced by the name of the possible item.
+  previewItemIndex: "&f- &9Possible Item: &f{itemname}"
+  # The lore to display when previewing items to be crafted.
+  # set to 'craftingLorePreview: []' to disable this feature.
+  craftingLorePreview:
+  - "&7This is a placeholder item."
+  - "&7Stats will remain hidden until crafted!"
+  # SkyShine will only convert items that contains a
+  # line in their lore which DOES NOT match the given regex
+  # Setting this to empty will convert ALL items with lore.
+  # SkyShine will ALWAYS convert vanilla items without lore.
+  loreMatcher: ""
+  # SkyShine will only convert items with display
+  # names that DOES NOT match the given regex
+  # Setting this to empty will convert ALL items with display names.
+  # SkyShine will ALWAYS convert vanilla items without a display name.
+  nameMatcher: ""
+  # If an item contains any of these NBTTags it will not be converted
+  # 'MMOITEMS_ITEM_TYPE' is pretty important as it will
+  # prevent existing MMOItems from being converted.
+  # 'RpgWorth' is for MMOCore currency items.
+  # 'DoNotConvert' is a custom NBTTag which could be applied.
+  exemptNBTTags: ["MMOITEMS_ITEM_TYPE", "RpgWorth", "DoNotConvert", "MMOITEMS_UNIDENTIFIED_ITEM"]
+  # Only turn to false if you'd like Slimefun items to convert.
+  # This does nothing regardless of value if Slimefun isn't installed.
+  exemptSlimefun: true
+
+Convert-On:
+  # Convert items when picked up from the ground
+  pickup: true
+  # Convert items when crafted in the crafting table
+  craft: true
+  # Convert items when smelted in a furnace. (Blast & Smokers on 1.14+)
+  # !!! IMPORTANT: Servers must be restarted when changing the config
+  # !!! for smelted recipes to work correctly when replacing!
+  smelt: true
+  # Convert items when smithed in a smithing table
+  smithing: true
+  # Convert when chests are being opened. This only applied once per
+  # individual chest/minecart (resets on server restarts)
+  chest: true
+  # Convert when item is moved around in the inventory.
+  # This one will call A LOT of events and therefore may not
+  # be suited for larger servers. Most of the time there won't
+  # even be the need for it, so best to leave it off.
+  inventory-change: false
+
+ConversionItems:
+  # This will turn any brick into an MMOItems Steel Ingot
+  BRICK: MATERIAL.STEEL_INGOT
+  # Iron Swords into MMOItems Cutlass...
+  IRON_SWORD: SWORD.CUTLASS
+  # Diamond Sword = Falcon Blade
+  DIAMOND_SWORD: SWORD.FALCON_BLADE
+  # This Gold Nugget will turn into a gold coin, but
+  # enchantments won't carry over, regardless of the global option.
+  # This also works the other way around so if global is false and
+  # the individual item is true, then enchantments will only carry
+  # over for the individual item and not for other replacements.
+  GOLD_NUGGET:
+    item: MISCELLANEOUS.GOLD_COIN
+    keepEnchantments: false
+    # [!] This setting also works here: 
+    # keepCustomNames: false
+  # This is a weighted list, making replacements random.
+  # Each entry requires an item and a weight. Higher
+  # weight means more likely. This is an example where
+  # an Iron Axe will commonly turn into a Butcher's Axe
+  # or a Bone Cracker and in rare cases a Skull Breaker.
+  IRON_AXE:
+    # the numbers don't have to be numbers, they
+    # can be anything. Be like the numbers. Be anything.
+    1:
+      item: AXE.BUTCHER_AXE
+      # The total weight is summed and then a random numbers
+      # between 0 and summed weight is generated. The random
+      # number is then subtracted by each choice's weight and once
+      # it hits 0 or less the candidate will be found.
+      # (That was a horrible explanation, sorry I'm writing this at 3 AM)
+      weight: 5
+    2:
+      item: AXE.BONE_CRACKER
+      # Weights can be anything from 1 to 2147483647
+      weight: 5
+    3:
+      item: AXE.SKULL_BREAKER
+      weight: 2
+  # When chichen is cooked. It will turn into
+  # an MMOItems Sandwich instead of cooked chicken.
+  COOKED_CHICKEN: CONSUMABLE.SANDWITCH
